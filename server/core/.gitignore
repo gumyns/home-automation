@@ -1,0 +1,9 @@
+build/
+.cproject
+.project
+.settings/
+.externalToolBuilders/
+eclipse/
+.idea/
+cmake-build-debug/
+plugin/

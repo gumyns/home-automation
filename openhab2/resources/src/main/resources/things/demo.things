@@ -1,0 +1,15 @@
+yahooweather:weather:berlin [ location=638242 ]
+astro:sun:home   [ geolocation="52.5200066,13.4049540", interval=60 ]
+astro:moon:home  [ geolocation="52.5200066,13.4049540", interval=60 ]
+ntp:ntp:demo [ hostname="nl.pool.ntp.org", refreshInterval=60, refreshNtp=30 ]
+
+
+Bridge gumyns:bridge:nano [ ip="192.168.1.103", port=12542 ]{ 
+    gateway     status_monitor      [addr="1:0:0"]
+}
+Bridge gumyns:bridge:main [ ip="127.0.0.1", port=12542 ]{ 
+    gateway     status_monitor      [addr="1:0:0"]
+    switch      pstryczek           [addr="2:0:0"]
+}
+
+// vim: syntax=Xtend syntax=openhab

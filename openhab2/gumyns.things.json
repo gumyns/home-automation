@@ -1,0 +1,4 @@
+[
+    {"id":"switch", "name":"Switch", "channels":["status"]},
+    {"id":"gateway", "name":"Gateway", "channels":["temperature"]}
+]

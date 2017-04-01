@@ -1,0 +1,4 @@
+[
+    {"id":"status", "type":"Switch","name":"Status", "description":"Status value for device, on hardware it's RW boolean"},
+    {"id":"temperature", "type":"Number","name":"Temperature", "description":"Most common channel used for getting temperature."}
+]
