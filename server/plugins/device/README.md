@@ -2,6 +2,7 @@
 
 ## Orders
 There are 4 orders for hardware part
+
 |Value|Description|
 |---|---|
 |0| Identification - hub only - returns list of connected devices|
@@ -11,6 +12,7 @@ There are 4 orders for hardware part
 
 ## Frame descriptor
 Frame descriptor is 8 bit value that contains:
+
 |Size | Description|
 |---|---|
 |3 b| Order |
@@ -18,6 +20,7 @@ Frame descriptor is 8 bit value that contains:
 
 ## Frame structure
 Frame looks like:
+
 |Size| Description |
 |---|---|
 |1 B| Size of frame |
@@ -25,6 +28,7 @@ Frame looks like:
 |0-253 B| Payload |
 
 For payload specific info take a look on READMEs for specific plugins, but generally pattern looks like:
+
 |Size| Description|
 |---|---|
 |1 B| Channel address |
@@ -42,6 +46,7 @@ This frame is fixed, and looks like:
 
 ### Read, Write and Response
 These are device specific, but generally pattern is:
+
 |Size| Description|
 |---|---|
 |1B| Size|
