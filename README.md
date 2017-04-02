@@ -11,7 +11,7 @@ Generally it looks like this:
 
 computer <=> gateway <=> hub <=> device 
 
-On top of the stack there's an computer with OpenHab2 running with plugin configured (e.g. PC, RaspberryPi, Odroid, whatever that can run Java8).
+On top there's a computer with OpenHab2 running with plugin configured (e.g. PC, RaspberryPi, Odroid, whatever that can run Java8).
 
 Gateway is some cheap ARM based board with Linux, like Rasperry Zero, NanoPi, and communicates with central computer utilizing distributed system built on top of TCP/IP.
 
