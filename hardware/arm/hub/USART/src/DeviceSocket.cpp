@@ -66,7 +66,7 @@ DeviceSocket::~DeviceSocket() {}
 				break;
 			case READ_ORDER:
 				this->state = READ_DATA;
-				byte |= (selector->currentAddress() & 0x1F);
+				byte |= ((selector->currentAddress() >> 1) & 0x1F);
 				/* no break */
 			default: // READ_DATA
 				if (--this->size <= 0) {

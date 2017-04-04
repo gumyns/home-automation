@@ -12,7 +12,7 @@
 
 namespace {
 
-	static constexpr int ports = 1;
+	static constexpr int ports = 4;
 	/**
 	 * Helper function that implements flow for finding pending interrupts and starting interrupt handling
 	 *
