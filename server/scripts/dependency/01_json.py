@@ -17,7 +17,7 @@ dstFile = os.path.join(dstDir, "json.hpp")
 dep_lib.createDir(dstDir)
 
 if not dependencyVersion == dep_lib.getVersion(dependencyName) or not os.path.isfile(dstFile):
-	print "Downloading json.hpp..."
+	print "Downloading {0}-{1}...".format(dependencyName, dependencyVersion)
 	dep_lib.download("https://raw.githubusercontent.com/nlohmann/json/v2.0.10/src/json.hpp", dstFile)
 	dep_lib.setVersion(dependencyName, dependencyVersion)	
 

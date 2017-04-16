@@ -16,9 +16,9 @@ fname = os.path.join(directory, 'boost.tar.bz2');
 
 if not dependencyVersion == dep_lib.getVersion(dependencyName) or not os.path.isdir(dirname):
 	if not os.path.isfile(fname):
-		print "Downloading boost 1.63.0..."
+		print "Downloading {0}-{1}...".format(dependencyName, dependencyVersion)
 		dep_lib.download("https://sourceforge.net/projects/boost/files/boost/1.63.0/boost_1_63_0.tar.bz2", fname)
-	print "Unziping boost..."
+	print "Uzipping {0}-{1}...".format(dependencyName, dependencyVersion)
 	dep_lib.unzipTar(fname, directory)
 	print "Removing unnecessary files..."
 	os.remove(fname)

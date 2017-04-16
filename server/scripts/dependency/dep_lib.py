@@ -11,6 +11,12 @@ def unzipTar(src, dst):
 	tar.extractall(dst)
 	tar.close()
 
+def unzipZip(src, dst): 
+	import zipfile
+	zip_ref = zipfile.ZipFile(src, 'r')
+	zip_ref.extractall(dst)
+	zip_ref.close()
+
 def download(what, into):
 	req = urllib2.Request(what)
 	response = urllib2.urlopen(req)
@@ -21,6 +27,12 @@ def download(what, into):
 			if not chunk:
 	    			break
 			f.write(chunk)
+
+def filesExist(*files):
+	exists = True
+	for f in files:
+		exists &= os.path.exists(f)
+	return exists
 
 def createDir(name):
 	if not os.path.exists(name):
