@@ -20,11 +20,11 @@ if not os.path.exists(os.path.join(target, "plugin", "hub")):
 
 path = os.path.join(target, "plugin", "device")
 os.path.abspath("./build/plugin/device")
-for root, subFolders, files in os.walk(os.path.abspath("./plugins/device")):
+for root, subFolders, files in os.walk(os.path.abspath("../plugins/device")):
     if 'build.py' in files:
-		os.system(os.path.join(root, 'build.py') + " " + path)
+		os.system("python " + os.path.join(root, 'build.py') + " " + path)
 
 path = os.path.join(target, "plugin", "hub")
-for root, subFolders, files in os.walk(os.path.abspath("./plugins/hub")):
+for root, subFolders, files in os.walk(os.path.abspath("../plugins/hub")):
     if 'build.py' in files:
-		os.system(os.path.join(root, 'build.py') + " " + path)
+		os.system("python " + os.path.join(root, 'build.py') + " " + path)
