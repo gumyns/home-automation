@@ -6,7 +6,7 @@ Fedora:
 >
 > dnf install cmake gcc gcc-c++ python27 libtool sqlite-devel
 
-There are also few dependencies, that have to be built from sources (at least on arm based devices). There are python scrips that can do that for you. Call:
+There are also few dependencies, that have to be built from sources (at least on arm based devices). There are python scrips that can do that for you. Call in server directory:
 
 > python scripts/resolveDependencies.py libs
 
