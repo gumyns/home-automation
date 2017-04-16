@@ -38,7 +38,7 @@ else (ZeroMQ_LIBRARIES AND ZeroMQ_INCLUDE_DIRS)
             libzmq.so
             PATHS
             /usr/lib
-            ../libs/zeromq
+            ../libs/zeromq/src/.libs
             )
 
     if (ZeroMQ_LIBRARY)
@@ -67,7 +67,7 @@ else (ZeroMQ_LIBRARIES AND ZeroMQ_INCLUDE_DIRS)
     endif (ZeroMQ_INCLUDE_DIRS AND ZeroMQ_LIBRARIES)
 
     if (ZeroMQ_FIND_REQUIRED AND NOT ZeroMQ_FOUND)
-        message(FATAL_ERROR "Could not find LibZeroMQ")
+        message(FATAL_ERROR "Could not find binaries LibZeroMQ")
     endif (ZeroMQ_FIND_REQUIRED AND NOT ZeroMQ_FOUND)
 
     # show the ZeroMQ_INCLUDE_DIRS and ZeroMQ_LIBRARIES variables only in the advanced view

@@ -14,8 +14,8 @@ set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 
 # setup boost libraries
-set(BOOST_ROOT ../libs/boost)
-set(BOOST_LIBRARYDIR ../libs/boost/lib)
+set(BOOST_ROOT ../libs/boost_1_63_0)
+set(BOOST_LIBRARYDIR ../libs/boost_1_63_0/stage/lib)
 
 file(GLOB CONFIG_MODULE src/config/*.cpp)
 

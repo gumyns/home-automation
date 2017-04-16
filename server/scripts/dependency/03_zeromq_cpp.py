@@ -25,7 +25,7 @@ if not dependencyVersion == dep_lib.getVersion(dependencyName) or neededFiles:
 	print "Uzipping {0}-{1}...".format(dependencyName, dependencyVersion)
 	dep_lib.unzipZip(dstFile, dstDir)
 	# move needed files
-	uName = 'cppzmq-4.2.1';
+	uName = 'cppzmq-4.2.1'
 	os.rename(os.path.join(dstDir, uName, 'zmq.hpp'), os.path.join(dstDir, 'zmq.hpp'))
 	os.rename(os.path.join(dstDir, uName, 'zmq_addon.hpp'), os.path.join(dstDir, 'zmq_addon.hpp'))
 	print "Removing unnecessary files..."

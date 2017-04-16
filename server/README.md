@@ -3,9 +3,12 @@ Make sure you have dev tools
 
 Fedora:
 > dnf group install 'Development Tools'	
-> dnf install cmake gcc gcc-c++ python27
+>
+> dnf install cmake gcc gcc-c++ python27 libtool sqlite-devel
 
-There are also few dependencies, that have to be built from sources (at least on arm based devices). There are python scrips that can do that for you.
+There are also few dependencies, that have to be built from sources (at least on arm based devices). There are python scrips that can do that for you. Call:
+
+> python scripts/resolveDependencies.py libs
 
 ## Run info ##
 
