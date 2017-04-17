@@ -15,10 +15,8 @@ void parseFrom(gumyns::sh::plugin::device::Parser* parser, std::vector<uint8_t> 
 
 int main() {
     boost::filesystem::path path("../plugins/device");
-    std::string pluginName = ".";
-    pluginName.append(PluginDescription::NAME);
  	auto factory = boost::dll::import<gumyns::sh::plugin::device::ParserFactory>(
-            path / pluginName.c_str(), "pDevice", boost::dll::load_mode::append_decorations
+            path / std::string(".").append(PluginDescription::NAME).c_str(), "pDevice", boost::dll::load_mode::append_decorations
  	);
 
 	// This is how a valid requests looks like

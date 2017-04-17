@@ -8,10 +8,8 @@ using namespace std;
 
 int main() {
     boost::filesystem::path path("../plugins/hub");
-    std::string pluginName = ".";
-    pluginName.append(PluginDescription::NAME);
  	auto factory = boost::dll::import<gumyns::sh::plugin::hub::ParserFactory>(
-            path / pluginName.c_str(), "pHub", boost::dll::load_mode::append_decorations
+            path / std::string(".").append(PluginDescription::NAME).c_str(), "pHub", boost::dll::load_mode::append_decorations
  	);
 
 	nlohmann::json json = {{}};
