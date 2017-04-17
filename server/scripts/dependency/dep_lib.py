@@ -23,11 +23,11 @@ def download(what, into):
 	response = urllib2.urlopen(req)
 	CHUNK = 16 * 1024
 	with open(into, 'wb') as f:
-		while True:
+        while True:
 			chunk = response.read(CHUNK)
 			if not chunk:
-				break
-		f.write(chunk)
+                break
+            f.write(chunk)
 
 def filesExist(*files):
 	exists = True
@@ -38,7 +38,7 @@ def filesExist(*files):
 def createDir(name):
 	if not os.path.exists(name):
 		print "Creating directory: " + name
-		call(["mkdir", name])
+        call(["mkdir", name])
 
 def getVersion(name):
 	fname = os.path.join(os.path.dirname(os.path.realpath(sys.argv[0])), "versions.json")
@@ -50,7 +50,7 @@ def getVersion(name):
 		versions = json.load(f)
 		if name in versions:
 			return versions[name]
-	return None
+    return None;
 
 def setVersion(name, version):
 	fname = os.path.join(os.path.dirname(os.path.realpath(sys.argv[0])), "versions.json")
@@ -64,4 +64,4 @@ def setVersion(name, version):
 		f.close()
 		with open(fname, 'w') as ff:
 			json.dump(versions,ff)
-	return
+    return;
