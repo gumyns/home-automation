@@ -1,4 +1,5 @@
 #include "Parser.h"
+#include <generated/PluginDescription.h>
 
 class Parser::Impl {
 	uint8_t addr0 = 1, addr4 = 0;
@@ -95,6 +96,10 @@ public:
 
 	}
 
+	Impl(nlohmann::json &json) {
+
+	}
+
 	void identify(uint32_t address) {
 		std::vector<uint8_t> response = {
 				0x01, // descriptor
@@ -110,7 +115,7 @@ public:
 
 };
 
-Parser::Parser(nlohmann::json &json) : gumyns::sh::plugin::hub::Parser(0xFFFF), pImpl(new Parser::Impl()) {
+Parser::Parser(nlohmann::json &json) : pImpl(new Parser::Impl(json)) {
 	std::cout << json << std::endl;
 }
 
@@ -130,3 +135,6 @@ void Parser::identify(uint32_t address) {
 	pImpl->identify(address);
 }
 
+uint32_t Parser::type() {
+	return PluginDescription::ID;
+}

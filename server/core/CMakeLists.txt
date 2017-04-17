@@ -1,21 +1,15 @@
 cmake_minimum_required(VERSION 3.6.2)
 
-project(gumyns.smart.home)
+project(gumyns.smart.home.core)
 
-set(CMAKE_CXX_STANDARD 14)
-
-set(CMAKE_AUTOMOC ON)
-
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_SOURCE_DIR}/cmake/Modules/")
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR}/cmake/Modules/ ${PROJECT_SOURCE_DIR}/../cmake/)
+include(Compiler)
+include(Boost)
 
 # setup compiled binaries dirs
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-
-# setup boost libraries
-set(BOOST_ROOT ../libs/boost_1_63_0)
-set(BOOST_LIBRARYDIR ../libs/boost_1_63_0/stage/lib)
 
 file(GLOB CONFIG_MODULE src/config/*.cpp)
 

@@ -1,4 +1,5 @@
 #include "Parser.h"
+#include <generated/PluginDescription.h>
 #include <common.h>
 
 class DeviceInfo {
@@ -85,5 +86,5 @@ std::vector<uint8_t> Parser::parseInput(uint8_t address, nlohmann::json &json) {
 }
 
 uint32_t Parser::type() {
-	return 0x0011;
+	return PluginDescription::ID;
 }

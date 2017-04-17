@@ -1,5 +1,6 @@
 #include "Parser.h"
 #include <common.h>
+#include <generated/PluginDescription.h>
 
 enum Channel {
 	THERMOMETER = 0x00
@@ -26,8 +27,6 @@ class Parser::Impl {
 	};
 
 public:
-	static const uint16_t ID = 0x0001;
-
 	Impl() {}
 
 	~Impl() {}
@@ -135,5 +134,5 @@ std::vector<uint8_t> Parser::parseInput(uint8_t address, nlohmann::json &json) {
 }
 
 uint32_t Parser::type() {
-	return Impl::ID;
+	return PluginDescription::ID;
 }

@@ -1,6 +1,7 @@
 #include "Parser.h"
 #include <fstream>
 #include <common.h>
+#include <generated/PluginDescription.h>
 
 enum Channel {
 	THERMOMETER = 0x00
@@ -89,6 +90,6 @@ void Parser::identify(uint32_t address) {
 }
 
 uint32_t Parser::type() {
-	return Impl::ID;
+	return PluginDescription::ID;
 }
 

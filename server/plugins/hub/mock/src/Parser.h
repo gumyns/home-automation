@@ -9,6 +9,8 @@ class Parser: public gumyns::sh::plugin::hub::Parser {
 public:
 	Parser(nlohmann::json &);
 
+	uint32_t type() override;
+
 	void write(uint32_t, std::vector<uint8_t>) override;
 
 	void identify(uint32_t) override;

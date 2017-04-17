@@ -1,4 +1,5 @@
 #include "Parser.h"
+#include <generated/PluginDescription.h>
 
 Parser::Parser(nlohmann::json &json) {
 	std::cout << "Parser()" << std::endl;
@@ -60,6 +61,6 @@ void Parser::identify(uint32_t address) {
 }
 
 uint32_t Parser::type() {
-	return 0x0002;
+	return PluginDescription::ID;
 }
 

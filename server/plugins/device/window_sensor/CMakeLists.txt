@@ -1,21 +1,23 @@
 cmake_minimum_required(VERSION 3.6.2)
 
-set(LIBRARY_NAME SensorWindow)
+set(PLUGIN_TYPE device)
+set(PLUGIN_NAME window.sensor)
+set(PLUGIN_ID 0x0011)
 
-project(gumyns.smart.home.plugin.device.${LIBRARY_NAME})
+project(gumyns.smart.home.plugin.${PLUGIN_TYPE}.${PLUGIN_NAME})
 
-set(CMAKE_AUTOMOC ON)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH}
+		${PROJECT_SOURCE_DIR}/../../../cmake/
+		${PROJECT_SOURCE_DIR}/../../cmake/
+		)
+include(Compiler)
+include(Boost)
+include(DescriptionGenerator)
 
 # setup compiled binaries dirs
 set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/lib)
 set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
-
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++14")
-
-# setup boost libraries
-set(BOOST_ROOT ../../../libs/boost)
-set(BOOST_LIBRARYDIR ../../../libs/boost/lib)
 
 file(GLOB LIBRARY_SOURCES
 	src/*.cpp
@@ -35,8 +37,8 @@ include_directories(
 )
 
 # executables
-add_library(${LIBRARY_NAME} SHARED ${LIBRARY_SOURCES})
-add_executable(main test/main.cpp)
+add_library(.${PLUGIN_TYPE}.${PLUGIN_NAME} SHARED ${LIBRARY_SOURCES})
+add_executable(${PLUGIN_TYPE}.${PLUGIN_NAME}.main test/main.cpp)
 
 #find boost
 add_definitions(-DBOOST_ALL_DYN_LINK)
@@ -54,6 +56,6 @@ set(LIBS ${LIBS} ${Boost_LIBRARIES})
 find_package(Threads REQUIRED)
 
 # linker
-target_link_libraries(${LIBRARY_NAME} ${LIBS} dl ${CMAKE_THREAD_LIBS_INIT})
-target_link_libraries(main ${LIBS} dl ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(.${PLUGIN_TYPE}.${PLUGIN_NAME} ${LIBS} dl ${CMAKE_THREAD_LIBS_INIT})
+target_link_libraries(${PLUGIN_TYPE}.${PLUGIN_NAME}.main ${LIBS} dl ${CMAKE_THREAD_LIBS_INIT})
 
