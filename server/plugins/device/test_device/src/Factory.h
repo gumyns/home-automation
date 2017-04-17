@@ -8,7 +8,7 @@ class _ParserFactory : public gumyns::sh::plugin::device::ParserFactory {
 public:
 	_ParserFactory() = default;
 
-	std::unique_ptr<gumyns::sh::plugin::device::Parser> create(nlohmann::json &json) override;
+	gumyns::sh::plugin::device::Parser::uPtr create(nlohmann::json &json) override;
 
 	~_ParserFactory() {};
 };
