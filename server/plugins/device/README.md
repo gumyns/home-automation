@@ -37,7 +37,9 @@ For payload specific info take a look on READMEs for specific plugins, but gener
 ### Identification
 This frame is fixed, and looks like:
 ###### Request:
-> { 0x01, 0x00 }
+```
+{ 0x01, 0x00 }
+```
 ###### Response:
 |Size|Description|
 |---|---|
