@@ -2,13 +2,16 @@
 #include <boost/filesystem.hpp>
 #include <boost/dll.hpp>
 #include <hub/Plugin.h>
+#include <generated/PluginDescription.h>
 
 using namespace std;
 
 int main() {
-	boost::filesystem::path path("../lib");
+    boost::filesystem::path path("../plugins/hub");
+    std::string pluginName = ".";
+    pluginName.append(PluginDescription::NAME);
  	auto factory = boost::dll::import<gumyns::sh::plugin::hub::ParserFactory>(
- 		path / "hub.mock", "Plugin", boost::dll::load_mode::append_decorations
+            path / pluginName.c_str(), "pHub", boost::dll::load_mode::append_decorations
  	);
 
 	nlohmann::json json = {{}};

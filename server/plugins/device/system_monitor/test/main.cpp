@@ -3,6 +3,7 @@
 #include <boost/dll.hpp>
 #include <device/Plugin.h>
 #include <common.h>
+#include <generated/PluginDescription.h>
 
 void parseTo(gumyns::sh::plugin::device::Parser* parser, uint8_t descriptor, nlohmann::json json) {
 	std::cout << "From: " << json << " -> " << toHexString(parser->parseInput(descriptor, json)) << std::endl;
@@ -13,9 +14,11 @@ void parseFrom(gumyns::sh::plugin::device::Parser* parser, std::vector<uint8_t> 
 }
 
 int main() {
-	boost::filesystem::path path("../lib");
+    boost::filesystem::path path("../plugins/device");
+    std::string pluginName = ".";
+    pluginName.append(PluginDescription::NAME);
  	auto factory = boost::dll::import<gumyns::sh::plugin::device::ParserFactory>(
- 		path / "SysMonitor", "pDevice", boost::dll::load_mode::append_decorations
+            path / pluginName.c_str(), "pDevice", boost::dll::load_mode::append_decorations
  	);
 
 	// This is how a valid requests looks like
