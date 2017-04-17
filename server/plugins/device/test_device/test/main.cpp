@@ -2,7 +2,7 @@
 #include <boost/filesystem.hpp>
 #include <boost/dll.hpp>
 #include <device/Plugin.h>
-#include <utils.h>
+#include <common.h>
 
 void parseTo(gumyns::sh::plugin::device::Parser* parser, uint8_t address, nlohmann::json json) {
 	std::cout << "From: " << json << " -> " << toHexString(parser->parseInput(address, json)) << std::endl;

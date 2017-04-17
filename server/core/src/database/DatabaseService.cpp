@@ -6,19 +6,18 @@ class gumyns::sh::DatabaseService::Impl {
 	std::unique_ptr<sqlite::database> db;
 public:
 	Impl(std::string name) : db(new sqlite::database(name.c_str()) ) {
-		(*db.get()) << "CREATE TABLE IF NOT EXISTS `gateways` ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `type` INTEGER NOT NULL, `name` TEXT NOT NULL, `alias_name` TEXT NOT NULL, `config` TEXT );";
+        (*db.get()) << "CREATE TABLE IF NOT EXISTS `gateways` ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `type` INTEGER NOT NULL, `name` TEXT NOT NULL, `config` TEXT );";
 		(*db.get()) << "CREATE TABLE IF NOT EXISTS `parsers` ( `type` INTEGER NOT NULL PRIMARY KEY UNIQUE, `name` TEXT NOT NULL, `alias_name` TEXT NOT NULL, `config` TEXT );";
 	}
 
 	std::vector<nlohmann::json> getGateways() {
 		std::vector<nlohmann::json> gateways;
-		(*db.get()) << "select id, type, name, alias_name, config from gateways;"
-					>> [&](int id, int type, std::string name, std::string alias_name, std::string config) {
+        (*db.get()) << "select id, type, name, config from gateways;"
+                    >> [&](int id, int type, std::string name, std::string config) {
 						nlohmann::json json;
 						json["id"] = id;
 						json["type"] = type;
-						json["name"] = name;
-						json["alias"] = alias_name;
+                        json["name"] = "." + name;
 						json["configuration"] = nlohmann::json::parse(config);
 						gateways.push_back(json);
 					};
@@ -27,12 +26,11 @@ public:
 
 	std::vector<nlohmann::json> getParsers() {
 		std::vector<nlohmann::json> gateways;
-		(*db.get()) << "select type, name, alias_name, config from parsers;"
-					>> [&](int type, std::string name, std::string alias_name, std::string config) {
+        (*db.get()) << "select type, name, config from parsers;"
+                    >> [&](int type, std::string name, std::string config) {
 						nlohmann::json json;
 						json["type"] = type;
-						json["name"] = name;
-						json["alias"] = alias_name;
+                        json["name"] = "." + name;
 						json["configuration"] = nlohmann::json::parse(config);
 						gateways.push_back(json);
 					};
