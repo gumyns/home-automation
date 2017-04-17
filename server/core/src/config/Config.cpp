@@ -48,10 +48,10 @@ std::vector<std::string> gumyns::sh::config::Config::restOptions() {
 }
 
 std::string gumyns::sh::config::Config::hubPluginPath() {
-    return "plugin/hub";
+    return "plugins/hub";
 }
 
 std::string gumyns::sh::config::Config::devicePluginPath() {
-    return "plugin/device";
+    return "plugins/device";
 }
 

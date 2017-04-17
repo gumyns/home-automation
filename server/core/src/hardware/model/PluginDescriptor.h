@@ -12,7 +12,6 @@ namespace sh {
 
 		uint32_t type;
 		std::string name;
-		std::string alias;
 		nlohmann::json configuration;
 	public:
 		PluginDescriptor(nlohmann::json &json) {
@@ -21,9 +20,6 @@ namespace sh {
 			}
 			if (json.find("name") != json.end()) {
 				name = *json.find("name");
-			}
-			if (json.find("alias") != json.end()) {
-				alias = *json.find("alias");
 			}
 			if (json.find("configuration") != json.end()) {
 				configuration = *json.find("configuration");
@@ -34,7 +30,6 @@ namespace sh {
 			return {{
 				{"type", type },
 				{"name", name},
-				{"alias", alias},
 				{"configuration", configuration}
 			}};
 		}
@@ -45,10 +40,6 @@ namespace sh {
 
 		const std::string &getName() const {
 			return name;
-		}
-
-		const std::string &getAlias() const {
-			return alias;
 		}
 
 		const nlohmann::json &getConfiguration() const {

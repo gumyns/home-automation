@@ -7,7 +7,7 @@ class gumyns::sh::DatabaseService::Impl {
 public:
 	Impl(std::string name) : db(new sqlite::database(name.c_str()) ) {
         (*db.get()) << "CREATE TABLE IF NOT EXISTS `gateways` ( `id` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT, `type` INTEGER NOT NULL, `name` TEXT NOT NULL, `config` TEXT );";
-		(*db.get()) << "CREATE TABLE IF NOT EXISTS `parsers` ( `type` INTEGER NOT NULL PRIMARY KEY UNIQUE, `name` TEXT NOT NULL, `alias_name` TEXT NOT NULL, `config` TEXT );";
+        (*db.get()) << "CREATE TABLE IF NOT EXISTS `parsers` ( `type` INTEGER NOT NULL PRIMARY KEY UNIQUE, `name` TEXT NOT NULL, `config` TEXT );";
 	}
 
 	std::vector<nlohmann::json> getGateways() {
@@ -17,7 +17,7 @@ public:
 						nlohmann::json json;
 						json["id"] = id;
 						json["type"] = type;
-                        json["name"] = "." + name;
+                        json["name"] = ".hub." + name;
 						json["configuration"] = nlohmann::json::parse(config);
 						gateways.push_back(json);
 					};
@@ -30,7 +30,7 @@ public:
                     >> [&](int type, std::string name, std::string config) {
 						nlohmann::json json;
 						json["type"] = type;
-                        json["name"] = "." + name;
+                        json["name"] = "lib.device." + name;
 						json["configuration"] = nlohmann::json::parse(config);
 						gateways.push_back(json);
 					};
