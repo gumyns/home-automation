@@ -15,7 +15,7 @@ public:
 		auto factory = factories[descriptor.getType()];
 		if (factory == nullptr) {
 			factory = boost::dll::import<gumyns::sh::plugin::hub::ParserFactory>(
-					path / descriptor.getName().c_str(), descriptor.getAlias().c_str(), boost::dll::load_mode::append_decorations
+                    path / descriptor.getName().c_str(), "pHub", boost::dll::load_mode::append_decorations
 			);
 			factories[descriptor.getType()] = factory;
 		}
