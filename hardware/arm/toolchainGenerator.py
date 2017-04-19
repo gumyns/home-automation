@@ -50,21 +50,5 @@ if not os.path.isdir(srcDir):
 
 for dev in devices:
     with open(os.path.join(srcDir, "{0}.cmake".format(dev)), 'w') as f:
-
         f.write(template.format(gcc_dir=directory, device=dev))
         f.close()
-
-
-
-
-# | head -1 | rev | cut -c 18- | rev'
-# output = subprocess.check_output()
-# p = subprocess.Popen(['find', '~/opt -name $0'], stdout=subprocess.PIPE, stderr=subprocess.PIPE, stdin=subprocess.PIPE)
-# out, err = p.communicate('arm-none-eabi-gcc')
-# print out
-
-
-#
-# call(["cmake", '..'], cwd=srcDir)
-# make_process = Popen("make", cwd=srcDir)
-# make_process.wait()
