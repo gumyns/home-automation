@@ -8,7 +8,6 @@
 
 class SPI {
 private:
-	constexpr static SPI_TypeDef * _SPI = SPI1;
 public:
 	class ISR {
 	public:
@@ -16,7 +15,7 @@ public:
 			TXE = SPI_SR_TXE,
 			RXNE = SPI_SR_RXNE
 		};
-		static inline bool has(_ISR interrupt) { return _SPI->SR & interrupt; }
+		static inline bool has(_ISR interrupt) { return SPI1->SR & interrupt; }
 	};
 	class CR1 {
 	public:
@@ -27,10 +26,10 @@ public:
 			BIDIRECTIONAL_OUTPUT = SPI_CR1_BIDIOE,
 			PRESCALLER_256 = SPI_CR1_BR
 		};
-		static inline void enable(_CR1 IT) { _SPI->CR1 |= IT; }
-		static inline void disable(_CR1 IT) { _SPI->CR1 &= ~(IT); }
-		static inline void set(_CR1 IT) { _SPI->CR1 = IT; }
-		static inline void reset() { _SPI->CR1 = 0; }
+		static inline void enable(_CR1 IT) { SPI1->CR1 |= IT; }
+		static inline void disable(_CR1 IT) { SPI1->CR1 &= ~(IT); }
+		static inline void set(_CR1 IT) { SPI1->CR1 = IT; }
+		static inline void reset() { SPI1->CR1 = 0; }
 	};
 	class CR2 {
 	public:
@@ -42,19 +41,19 @@ public:
 			SS_HARDWARE = SPI_CR2_SSOE,
 			DATA_8_BIT = SPI_dataMask(9)
 		};
-		static inline void enable(_CR2 IT) { _SPI->CR2 |= IT; }
-		static inline void disable(_CR2 IT) { _SPI->CR2 &= ~(IT); }
-		static inline void set(_CR2 IT) { _SPI->CR2 = IT; }
-		static inline void reset() { _SPI->CR2 = 0; }
+		static inline void enable(_CR2 IT) { SPI1->CR2 |= IT; }
+		static inline void disable(_CR2 IT) { SPI1->CR2 &= ~(IT); }
+		static inline void set(_CR2 IT) { SPI1->CR2 = IT; }
+		static inline void reset() { SPI1->CR2 = 0; }
 	};
 	class I2S {
 	public:
-		static inline void reset() { _SPI->I2SCFGR = 0; }
+		static inline void reset() { SPI1->I2SCFGR = 0; }
 	};
 
 
-	static inline void write(uint8_t data) { _SPI->DR = 0x0FF & data; } // TODO
-	static inline uint16_t read() { return _SPI->DR; }
+	static inline void write(uint8_t data) { SPI1->DR = 0x0FF & data; } // TODO
+	static inline uint16_t read() { return SPI1->DR; }
 };
 
 __enum__or__operator__(SPI::ISR::_ISR);
