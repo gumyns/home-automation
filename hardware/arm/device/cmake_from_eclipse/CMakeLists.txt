@@ -2,31 +2,13 @@ cmake_minimum_required(VERSION 3.6.2)
 
 project(proj)
 
-file(GLOB CMSIS system/src/cmsis/*.c)
-file(GLOB CORTEXM system/src/cortexm/*.c)
-file(GLOB DIAG system/src/diag/*.c)
-file(GLOB NEWLIB
-        system/src/newlib/*.c
-        system/src/newlib/*.cpp)
-file(GLOB HAL system/src/stm32f0xx/*.c)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR}/../../std-libs/)
 
-set(ARM_LIBRARY_SOURCES
-        ${CMSIS}
-        ${CORTEXM}
-        ${DIAG}
-        ${NEWLIB}
-        ${HAL}
-)
+include(StdLibs)
 
 file(GLOB SOURCE_FILES src/*.c src/*.cpp)
 
-include_directories(
-        system/include
-        system/include/cmsis
-        system/include/stm32f0xx
-        system/include/cmsis/device
-        include
-)
+include_directories(include)
 
 add_executable(${PROJECT_NAME} ${ARM_LIBRARY_SOURCES} ${SOURCE_FILES})
 
