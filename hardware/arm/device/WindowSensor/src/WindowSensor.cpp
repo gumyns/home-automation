@@ -9,6 +9,7 @@
 #include <config/GPIO.h>
 #include <config/EXTI.h>
 #include <BlinkLed.h>
+#include <stm32f0xx_conf.h>
 
 using namespace ::gumyns::sh;
 

@@ -8,6 +8,7 @@
 #include "DeviceSocket.h"
 #include <config/GPIO.h>
 #include <config/SPI.h>
+#include <stm32f0xx_conf.h>
 
 namespace {
 	static inline void outputMode() {
