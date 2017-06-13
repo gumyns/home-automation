@@ -22,7 +22,7 @@ Device is just a worker (also ARM based board), that communitates with hubs usin
 #### This repository contains following modules
 ##### - [OpenHab2 plugin](./openhab2)
 ##### - [C++ server and plugins for gateways](./server)
-##### - [PCB layouts and microcontrollers code](./hardware/arm)
+##### - [PCB layouts and microcontrollers code](./hardware)
 
 # NOTE
 This project is in early stage, it's already a working prototype but far from final product.
