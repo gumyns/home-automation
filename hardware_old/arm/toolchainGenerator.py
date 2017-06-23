@@ -26,7 +26,7 @@ set(COMMON_FLAGS " -Wall -Wextra -nostartfiles -mcpu=cortex-m0 -mthumb -mthumb-i
 set(CMAKE_CXX_FLAGS_INIT "${{COMMON_FLAGS}} -std=c++14")
 set(CMAKE_C_FLAGS_INIT "${{COMMON_FLAGS}} -std=gnu99")
 set(CMAKE_ASM_FLAGS_INIT -nostdinc)
-set(CMAKE_EXE_LINKER_FLAGS_INIT -Wl,-gc-sections,-M=binary.map,-Map,"${{PROJECT_NAME}}.map",-o"${{PROJECT_NAME}}.elf")
+set(CMAKE_EXE_LINKER_FLAGS_INIT "-Xlinker --gc-sections -Wl,-Map,${{PROJECT_NAME}}.map,-o${{PROJECT_NAME}}.elf")
 
 set(CMAKE_C_FLAGS "${{COMMON_FLAGS}} -std=gnu99" CACHE INTERNAL "c compiler flags")
 set(CMAKE_CXX_FLAGS "${{COMMON_FLAGS}} -std=c++14" CACHE INTERNAL "cxx compiler flags")
