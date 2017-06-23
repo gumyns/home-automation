@@ -26,8 +26,7 @@ set(COMMON_FLAGS " -Wall -Wextra -mcpu=cortex-m0 -mthumb -mthumb-interwork -mflo
 set(CMAKE_CXX_FLAGS_INIT "${{COMMON_FLAGS}} -std=c++14")
 set(CMAKE_C_FLAGS_INIT "${{COMMON_FLAGS}} -std=gnu99")
 set(CMAKE_ASM_FLAGS_INIT -nostdinc)
-set(CMAKE_EXE_LINKER_FLAGS_INIT
-        -Wl,-gc-sections,-M=binary.map -T mem.ld -T libs.ld -T sections.ld -Xlinker -L"${{PROJECT_SOURCE_DIR}}/ldscripts/{device}",-Map,"${{PROJECT_NAME}}.map",-o"${{PROJECT_NAME}}.elf")
+set(CMAKE_EXE_LINKER_FLAGS_INIT -Wl,-gc-sections,-M=binary.map,-Map,"${{PROJECT_NAME}}.map",-o"${{PROJECT_NAME}}.elf")
 
 set(CMAKE_C_FLAGS "${{COMMON_FLAGS}} -mthumb -fno-builtin -mcpu=cortex-m0 -Wall -std=gnu99 -ffunction-sections -fdata-sections -fomit-frame-pointer -mabi=aapcs -fno-unroll-loops -ffast-math -ftree-vectorize" CACHE INTERNAL "c compiler flags")
 set(CMAKE_CXX_FLAGS "${{COMMON_FLAGS}} -mthumb -fno-builtin -mcpu=cortex-m0 -Wall -std=c++14 -ffunction-sections -fdata-sections -fomit-frame-pointer -mabi=aapcs -fno-unroll-loops -ffast-math -ftree-vectorize" CACHE INTERNAL "cxx compiler flags")
