@@ -1,36 +1,4 @@
 /*
- * Memory Spaces Definitions.
- *
- * Need modifying for a specific board.
- *   FLASH.ORIGIN: starting address of flash
- *   FLASH.LENGTH: length of flash
- *   RAM.ORIGIN: starting address of RAM bank 0
- *   RAM.LENGTH: length of RAM bank 0
- *
- * The values below can be addressed in further linker scripts
- * using functions like 'ORIGIN(RAM)' or 'LENGTH(RAM)'.
- */
-
-MEMORY
-{
-  RAM (xrw) : ORIGIN = 0x20000000, LENGTH = 2K
-  CCMRAM (xrw) : ORIGIN = 0x00000000, LENGTH = 0
-  FLASH (rx) : ORIGIN = 0x08000000, LENGTH = 32K
-  FLASHB1 (rx) : ORIGIN = 0x00000000, LENGTH = 0
-  EXTMEMB0 (rx) : ORIGIN = 0x00000000, LENGTH = 0
-  EXTMEMB1 (rx) : ORIGIN = 0x00000000, LENGTH = 0
-  EXTMEMB2 (rx) : ORIGIN = 0x00000000, LENGTH = 0
-  EXTMEMB3 (rx) : ORIGIN = 0x00000000, LENGTH = 0
-  MEMORY_ARRAY (xrw)  : ORIGIN = 0x00000000, LENGTH = 0
-}
-
-/*
- * For external ram use something like:
-
-  RAM (xrw) : ORIGIN = 0x68000000, LENGTH = 2K
-
- */
-/*
  * Default linker script for Cortex-M (it includes specifics for STM32F[34]xx).
  * 
  * To make use of the multi-region initialisations, define
@@ -80,6 +48,18 @@ PROVIDE ( _Heap_Limit = __stack - __Main_Stack_Size ) ;
  */
 ENTRY(_start)
 
+MEMORY
+{
+  RAM (xrw) : ORIGIN = 0x20000000, LENGTH = 2K
+  CCMRAM (xrw) : ORIGIN = 0x00000000, LENGTH = 0
+  FLASH (rx) : ORIGIN = 0x08000000, LENGTH = 32K
+  FLASHB1 (rx) : ORIGIN = 0x00000000, LENGTH = 0
+  EXTMEMB0 (rx) : ORIGIN = 0x00000000, LENGTH = 0
+  EXTMEMB1 (rx) : ORIGIN = 0x00000000, LENGTH = 0
+  EXTMEMB2 (rx) : ORIGIN = 0x00000000, LENGTH = 0
+  EXTMEMB3 (rx) : ORIGIN = 0x00000000, LENGTH = 0
+  MEMORY_ARRAY (xrw)  : ORIGIN = 0x00000000, LENGTH = 0
+}
 
 /* Sections Definitions */
 
@@ -425,53 +405,11 @@ SECTIONS
         *(.eb3rodata)                 /* read-only data (constants) */
         *(.eb3rodata.*)
     } >EXTMEMB3
-   
 
-    /* After that there are only debugging sections. */
-    
-    /* This can remove the debugging information from the standard libraries */    
-    /* 
     DISCARD :
     {
      libc.a ( * )
      libm.a ( * )
      libgcc.a ( * )
      }
-     */
-  
-    /* Stabs debugging sections.  */
-    .stab          0 : { *(.stab) }
-    .stabstr       0 : { *(.stabstr) }
-    .stab.excl     0 : { *(.stab.excl) }
-    .stab.exclstr  0 : { *(.stab.exclstr) }
-    .stab.index    0 : { *(.stab.index) }
-    .stab.indexstr 0 : { *(.stab.indexstr) }
-    .comment       0 : { *(.comment) }
-    /*
-     * DWARF debug sections.
-     * Symbols in the DWARF debugging sections are relative to the beginning
-     * of the section so we begin them at 0.  
-     */
-    /* DWARF 1 */
-    .debug          0 : { *(.debug) }
-    .line           0 : { *(.line) }
-    /* GNU DWARF 1 extensions */
-    .debug_srcinfo  0 : { *(.debug_srcinfo) }
-    .debug_sfnames  0 : { *(.debug_sfnames) }
-    /* DWARF 1.1 and DWARF 2 */
-    .debug_aranges  0 : { *(.debug_aranges) }
-    .debug_pubnames 0 : { *(.debug_pubnames) }
-    /* DWARF 2 */
-    .debug_info     0 : { *(.debug_info .gnu.linkonce.wi.*) }
-    .debug_abbrev   0 : { *(.debug_abbrev) }
-    .debug_line     0 : { *(.debug_line) }
-    .debug_frame    0 : { *(.debug_frame) }
-    .debug_str      0 : { *(.debug_str) }
-    .debug_loc      0 : { *(.debug_loc) }
-    .debug_macinfo  0 : { *(.debug_macinfo) }
-    /* SGI/MIPS DWARF 2 extensions */
-    .debug_weaknames 0 : { *(.debug_weaknames) }
-    .debug_funcnames 0 : { *(.debug_funcnames) }
-    .debug_typenames 0 : { *(.debug_typenames) }
-    .debug_varnames  0 : { *(.debug_varnames) }    
 }
