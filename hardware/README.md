@@ -1,9 +1,9 @@
 ## Prerequisites
 Download gcc-arm: http://gnuarmeclipse.github.io/toolchain/install/
 
-Generate toolchains, call this:
+Generate toolchains and cmake files, call this:
 ```commandline
-python toolchainGenerator.py
+python prepare.py
 ```
 
 Download CubeMX package for STM32F0, or whole STM32CubeMX
