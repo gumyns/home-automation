@@ -22,19 +22,19 @@ set(CMAKE_AR arm-none-eabi-ar)
 set(CMAKE_RANLIB arm-none-eabi-ranlib)
 set(CMAKE_LINKER arm-none-eabi-ld)
 
-set(COMMON_FLAGS " -Wall -Wextra -nostartfiles -mcpu=cortex-m0 -mthumb -mthumb-interwork -mfloat-abi=soft -ffunction-sections -fdata-sections -g -fno-common -fmessage-length=0  --specs=nano.specs -Os -fsigned-char -ffreestanding -fomit-frame-pointer -mabi=aapcs -fno-unroll-loops -ffast-math -ftree-vectorize -fno-builtin")
-set(CMAKE_CXX_FLAGS_INIT "${{COMMON_FLAGS}} -std=c++14")
+set(COMMON_FLAGS " -Wall -Wextra -nostartfiles -mcpu=cortex-m0 -mthumb -mthumb-interwork -mfloat-abi=soft -ffunction-sections -fdata-sections -g -fno-common -fmessage-length=0  --specs=nano.specs -Os -fsigned-char -ffreestanding -fomit-frame-pointer -mabi=aapcs -fno-unroll-loops -ffast-math -ftree-vectorize -fno-builtin -MMD -MP")
+set(CMAKE_CXX_FLAGS_INIT "${{COMMON_FLAGS}} -std=gnu++14")
 set(CMAKE_C_FLAGS_INIT "${{COMMON_FLAGS}} -std=gnu99")
 set(CMAKE_ASM_FLAGS_INIT -nostdinc)
 set(CMAKE_EXE_LINKER_FLAGS_INIT "-Xlinker --gc-sections -Wl,-Map,${{PROJECT_NAME}}.map,-o${{PROJECT_NAME}}.elf")
 
 set(CMAKE_C_FLAGS "${{COMMON_FLAGS}} -std=gnu99" CACHE INTERNAL "c compiler flags")
-set(CMAKE_CXX_FLAGS "${{COMMON_FLAGS}} -std=c++14" CACHE INTERNAL "cxx compiler flags")
+set(CMAKE_CXX_FLAGS "${{COMMON_FLAGS}} -std=gnu++14  -fabi-version=0 -fno-exceptions -fno-rtti -fno-use-cxa-atexit -fno-threadsafe-statics" CACHE INTERNAL "cxx compiler flags")
 set(CMAKE_ASM_FLAGS "${{COMMON_FLAGS}} -x assembler-with-cpp " CACHE INTERNAL "asm compiler flags")
 """
 
 findCMD = 'find ~/opt -name "arm-none-eabi-gcc" | head -1 | rev | cut -c 18- | rev'
-out = subprocess.Popen(findCMD,shell=True,stdin=subprocess.PIPE, stdout=subprocess.PIPE,stderr=subprocess.PIPE)
+out = subprocess.Popen(findCMD, shell=True, stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 (stdout, stderr) = out.communicate()
 files = stdout.decode().split()
 if len(files) is 1:
