@@ -24,6 +24,7 @@ if not os.path.isdir(stm32flashDir):
     os.system("git clone http://git.code.sf.net/p/stm32flash/code stm32flash")
 if not os.path.exists(stm32flashBinary):
     call("make", cwd = stm32flashDir)
+print "stm32flash located at: " + stm32flashBinary
 
 # toolchain generator
 for device in devices:
