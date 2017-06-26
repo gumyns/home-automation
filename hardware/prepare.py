@@ -5,7 +5,7 @@ from subprocess import call
 
 # toolchain defines
 libs = [
-    os.path.expanduser("~") + '/opt/STM32/STM32Cube_FW_F0_V1.8.0'
+    os.path.expanduser("~") + '/opt/STM32/STM32Cube_FW_F0_V1.8.0' # ~/opt/...
 ]
 
 devices = [
