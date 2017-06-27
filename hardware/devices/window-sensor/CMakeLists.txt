@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.6.2)
 # enable C, C++ and assembler for this project
-project(arm.diode C CXX ASM)
+project(arm.device.window-sensor C CXX ASM)
 # show toolchain
 message(STATUS "Toolchain: ${CMAKE_TOOLCHAIN_FILE}")
 # add modules dir
