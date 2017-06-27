@@ -8,6 +8,8 @@ libs = [
     ["F0", os.path.expanduser("~") + '/opt/STM32/STM32Cube_FW_F0_V1.8.0'] # ~/opt/...
 ]
 
+families = ["F0", "F1"]
+
 devices = [
     'STM32F030x6',
     'STM32F042x6'
@@ -31,11 +33,7 @@ for device in devices:
     os.system("python " + os.path.join(scriptsDir, "generateToolchain.py") + " " + currentDir + " " + device)
 
 # cmake generator
-# for lib in libs:
-#     if not os.path.isdir(lib):
-#         print "Directory {0} doesn't exists. Skipping".format(lib)
-#     else:
-#         libDir = os.path.join(lib, "Drivers", "STM32F0xx_HAL_Driver", "Src")
-#         files = [f for f in os.listdir(libDir) if os.path.isfile(os.path.join(libDir, f))]
-#         for file in files:
-#             print os.path.join(libDir, file)
+familyList = ""
+for family in families:
+    familyList = familyList + "," + family
+os.system("python " + os.path.join(scriptsDir, "generateDirectories.py") + " " + currentDir + " " + familyList[1:])

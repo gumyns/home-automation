@@ -1,0 +1,4 @@
+if ({family_var} STREQUAL {family})
+    set(ARM_LIBS_DIR {directory})
+endif ()
+

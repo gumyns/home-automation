@@ -1,4 +1,4 @@
-include(ArmDirectories)
+include(../../../cmake/ArmDirectories)
 
 include_directories(
         ${ARM_LIBS_DIR}/Drivers/CMSIS/Include

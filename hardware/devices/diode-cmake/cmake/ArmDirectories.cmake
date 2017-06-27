@@ -1,3 +1,0 @@
-if (STM32_FAMILY STREQUAL STM32F0)
-    set(ARM_LIBS_DIR ~/opt/STM32/STM32Cube_FW_F0_V1.8.0)
-endif ()
