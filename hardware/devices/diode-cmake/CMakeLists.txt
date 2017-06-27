@@ -1,33 +1,26 @@
 cmake_minimum_required(VERSION 3.6.2)
 
-project(arm.window.sensor)
+project(arm.window.sensor C CXX ASM)
 
-#set(CMAKE_TOOLCHAIN_FILE ${PROJECT_SOURCE_DIR}/../../toolchain/STM32F0.cmake)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR}/cmake)
 
-#file(GLOB CMSIS system/src/cmsis/*.c)
-#file(GLOB CORTEXM system/src/cortexm/*.c)
-#file(GLOB DIAG system/src/diag/*.c)
-#file(GLOB NEWLIB
-#        system/src/newlib/*.c
-#        system/src/newlib/*.cpp)
-#file(GLOB HAL system/src/stm32f0-stdperiph/*.c)
+include(cmake/STM32F0Dependencies.cmake)
 
-set(ARM_LIBRARY_SOURCES
-        )
+file(GLOB SOURCES Src/*.c)
 
+set(SOURCE_FILES
+        ${SOURCES}
+        ${ARM_LIBS_SOURCES}
+)
 
 include_directories(
+        Inc
 )
 ###########################################################################
 
-file(GLOB_RECURSE SOURCE_FILES Src/*.c)
-
-add_definitions(-DSTM32F030)
-add_definitions(-DUSE_STDPERIPH_DRIVER)
-add_definitions(-DHSE_VALUE=48000000)
-
-add_executable(${PROJECT_NAME} ${ARM_LIBRARY_SOURCES} ${SOURCE_FILES})
-set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "\"-T${PROJECT_SOURCE_DIR}/ldscripts/sections.ld\"" )
+add_executable(${PROJECT_NAME} ${ARM_LIBRARY_SOURCES} ${SOURCE_FILES} startup_stm32f030x6.s)
+set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "\"-T${PROJECT_SOURCE_DIR}/STM32F030F4Px_FLASH.ld\"" )
+#set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "\"-T${PROJECT_SOURCE_DIR}/sections.ld\"" )
 
 target_link_libraries(${PROJECT_NAME})
 
@@ -42,3 +35,5 @@ add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
         COMMENT "Building ${PROJECT_NAME}.hex and here's size in [B]:")
 
 add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD COMMENT "KK THX BB")
+
+message(STATUS ${SOURCE_FILES})

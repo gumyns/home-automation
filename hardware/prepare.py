@@ -34,3 +34,8 @@ for device in devices:
 for lib in libs:
     if not os.path.isdir(lib):
         print "Directory {0} doesn't exists. Skipping".format(lib)
+    else:
+        libDir = os.path.join(lib, "Drivers", "STM32F0xx_HAL_Driver", "Src")
+        files = [f for f in os.listdir(libDir) if os.path.isfile(os.path.join(libDir, f))]
+        for file in files:
+            print os.path.join(libDir, file)
