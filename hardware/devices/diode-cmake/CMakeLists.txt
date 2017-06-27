@@ -2,23 +2,25 @@ cmake_minimum_required(VERSION 3.6.2)
 
 project(arm.window.sensor C CXX ASM)
 
-set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR}/cmake)
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR}/../../cmake/Modules)
 
-include(cmake/STM32F0Dependencies.cmake)
+find_package(CMSIS REQUIRED)
+find_package(HAL REQUIRED)
 
 file(GLOB SOURCES Src/*.c)
 
 set(SOURCE_FILES
         ${SOURCES}
-        ${ARM_LIBS_SOURCES}
+        ${HAL_SOURCES}
 )
 
 include_directories(
+        ${CMSIS_INCLUDE_DIRS}
+        ${HAL_INCLUDE_DIRS}
         Inc
 )
 ###########################################################################
-
-add_executable(${PROJECT_NAME} ${ARM_LIBRARY_SOURCES} ${SOURCE_FILES} startup_stm32f030x6.s)
+add_executable(${PROJECT_NAME} ${SOURCE_FILES} startup_stm32f030x6.s)
 set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "\"-T${PROJECT_SOURCE_DIR}/STM32F030F4Px_FLASH.ld\"" )
 #set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "\"-T${PROJECT_SOURCE_DIR}/sections.ld\"" )
 

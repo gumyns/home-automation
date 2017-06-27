@@ -1,0 +1,42 @@
+# Once done this will define
+#
+#  CMSIS_FOUND - system has CMSIS
+#  CMSIS_INCLUDE_DIRS - the CMSIS include directory
+
+include(../ArmDirectories)
+
+if (CMSIS_INCLUDE_DIRS)
+    set(CMSIS_FOUND TRUE) # in cache already
+else (CMSIS_INCLUDE_DIRS)
+    set(CMSIS_DEFINITIONS "")
+
+    find_path(CMSIS_INCLUDE_DIR
+            NAMES
+            core_cm0.h
+            stm32f0xx.h
+            PATHS
+            ${ARM_LIBS_DIR}/Drivers/CMSIS/Include
+            ${ARM_LIBS_DIR}/Drivers/CMSIS/Device/ST/STM32F0xx/Include
+            )
+    if (CMSIS_INCLUDE_DIR)
+        message("-- Found CMSIS includes in: ${CMSIS_INCLUDE_DIR}")
+        set(CMSIS_INCLUDE_DIR
+                ${ARM_LIBS_DIR}/Drivers/CMSIS/Include
+                ${ARM_LIBS_DIR}/Drivers/CMSIS/Device/ST/STM32F0xx/Include
+                )
+    else (CMSIS_INCLUDE_DIR)
+        message("CMSIS include not found :(")
+    endif (CMSIS_INCLUDE_DIR)
+
+    set(CMSIS_INCLUDE_DIRS ${CMSIS_INCLUDE_DIR})
+
+    if (CMSIS_INCLUDE_DIRS)
+        set(CMSIS_FOUND TRUE)
+    endif (CMSIS_INCLUDE_DIRS)
+
+    if (NOT CMSIS_FOUND)
+        message(FATAL_ERROR "Could not find CMSIS")
+    endif (NOT CMSIS_FOUND)
+
+    mark_as_advanced(CMSIS_INCLUDE_DIRS)
+endif (CMSIS_INCLUDE_DIRS)

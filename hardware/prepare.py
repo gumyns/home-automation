@@ -37,3 +37,17 @@ familyList = ""
 for family in families:
     familyList = familyList + "," + family
 os.system("python " + os.path.join(scriptsDir, "generateDirectories.py") + " " + currentDir + " " + familyList[1:])
+# find CMSIS
+with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), "scripts", "templates", "FindCMSIS.template"), 'r') as f:
+    template = f.read()
+    call(["mkdir", "-p", os.path.join(currentDir, "cmake", "Modules")])
+    with open(os.path.join(currentDir, "cmake", "Modules", "FindCMSIS.cmake"), 'w') as f:
+        f.write(template)
+        f.close()
+# find HAL
+with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), "scripts", "templates", "FindHAL.template"), 'r') as f:
+    template = f.read()
+    call(["mkdir", "-p", os.path.join(currentDir, "cmake", "Modules")])
+    with open(os.path.join(currentDir, "cmake", "Modules", "FindHAL.cmake"), 'w') as f:
+        f.write(template)
+        f.close()

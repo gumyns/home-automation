@@ -1,0 +1,100 @@
+# Once done this will define
+#
+#  HAL_FOUND - system has HAL
+#  HAL_INCLUDE_DIRS - the HAL include directory
+#  HAL_SOURCES - the HAL include directory
+
+include(../ArmDirectories)
+
+if (HAL_SOURCES AND HAL_INCLUDE_DIRS)
+    set(HAL_FOUND TRUE) # in cache already
+else (HAL_SOURCES AND HAL_INCLUDE_DIRS)
+    set(HAL_DEFINITIONS "")
+    if (STM32_FAMILY STREQUAL STM32F0)
+        find_path(HAL_INCLUDE_DIR
+                NAMES
+                stm32f0xx_hal.h
+                PATHS
+                ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Inc
+                ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Inc/Legacy
+                )
+        if (HAL_INCLUDE_DIR)
+            message("-- Found HAL includes in: ${HAL_INCLUDE_DIR}")
+            set(HAL_INCLUDE_DIR
+                ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Inc
+                ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Inc/Legacy
+            )
+            set(HAL_SOURCES
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_dac.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_smartcard.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_exti.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_adc.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_utils.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_usart.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_usart.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_i2c.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_rcc.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_dma.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pcd_ex.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_pwr.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_iwdg.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rtc_ex.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cec.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim_ex.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tim.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_crs.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_gpio.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac_ex.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_irda.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_wwdg.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dac.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_comp.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc_ex.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_cortex.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_spi_ex.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_can.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_tsc.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_crc.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2s.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_uart_ex.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_adc_ex.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_spi.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_comp.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rtc.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_flash_ex.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_rcc.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_adc.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_gpio.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pwr.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_spi.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_crc_ex.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_dma.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_smartcard_ex.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_crc.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_i2c_ex.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_pwr_ex.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_tim.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_hal_smbus.c
+                    ${ARM_LIBS_DIR}/Drivers/STM32F0xx_HAL_Driver/Src/stm32f0xx_ll_rtc.c
+            )
+        else (HAL_INCLUDE_DIR)
+            message(FATAL_ERROR "HAL include not found :(")
+        endif (HAL_INCLUDE_DIR)
+    endif ()
+    set(HAL_INCLUDE_DIRS ${HAL_INCLUDE_DIR})
+
+    if (HAL_INCLUDE_DIRS)
+        set(HAL_FOUND TRUE)
+    endif (HAL_INCLUDE_DIRS)
+
+    if (NOT HAL_FOUND)
+        message(FATAL_ERROR "Could not find HAL")
+    endif (NOT HAL_FOUND)
+
+    mark_as_advanced(HAL_SOURCES AND HAL_INCLUDE_DIRS)
+endif (HAL_SOURCES AND HAL_INCLUDE_DIRS)
