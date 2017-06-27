@@ -1,2 +1,4 @@
 cmake/
 stm32flash/
+*/*/cmake-build-*/
+*/*/.idea/
