@@ -5,7 +5,7 @@ from subprocess import call
 
 # toolchain defines
 libs = [
-    os.path.expanduser("~") + '/opt/STM32/STM32Cube_FW_F0_V1.8.0' # ~/opt/...
+    ["F0", os.path.expanduser("~") + '/opt/STM32/STM32Cube_FW_F0_V1.8.0'] # ~/opt/...
 ]
 
 devices = [
@@ -31,11 +31,11 @@ for device in devices:
     os.system("python " + os.path.join(scriptsDir, "generateToolchain.py") + " " + currentDir + " " + device)
 
 # cmake generator
-for lib in libs:
-    if not os.path.isdir(lib):
-        print "Directory {0} doesn't exists. Skipping".format(lib)
-    else:
-        libDir = os.path.join(lib, "Drivers", "STM32F0xx_HAL_Driver", "Src")
-        files = [f for f in os.listdir(libDir) if os.path.isfile(os.path.join(libDir, f))]
-        for file in files:
-            print os.path.join(libDir, file)
+# for lib in libs:
+#     if not os.path.isdir(lib):
+#         print "Directory {0} doesn't exists. Skipping".format(lib)
+#     else:
+#         libDir = os.path.join(lib, "Drivers", "STM32F0xx_HAL_Driver", "Src")
+#         files = [f for f in os.listdir(libDir) if os.path.isfile(os.path.join(libDir, f))]
+#         for file in files:
+#             print os.path.join(libDir, file)

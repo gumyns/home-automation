@@ -1,11 +1,12 @@
 #!/usr/bin/python
 import os
 import sys
+import re
 import subprocess
 
 if len(sys.argv) == 3:
-    targetDir = os.path.join(os.path.abspath(sys.argv[1]), "toolchains")
-    device = sys.argv[2];
+    targetDir = os.path.join(os.path.abspath(sys.argv[1]), "cmake", "toolchains")
+    device = sys.argv[2]
 else:
     sys.exit("ERROR parameter missing -> python generateToolchain.py <directory> <device name>");
 
@@ -22,8 +23,10 @@ else:
     sys.exit("GCC for arm not found...")
 
 if not os.path.isdir(targetDir):
-    subprocess.call(["mkdir", targetDir])
+    subprocess.call(["mkdir", "-p", targetDir])
+
+family = re.match("STM32[FL][0-9]", device).group()
 
 with open(os.path.join(targetDir, "{0}.cmake".format(device)), 'w') as f:
-    f.write(template.format(gcc_dir=directory, device=device))
+    f.write(template.format(gcc_dir=directory, device=device, family=family))
     f.close()

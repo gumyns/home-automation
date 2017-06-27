@@ -1,6 +1,7 @@
 set(ENV{{PATH}} {gcc_dir})
 set(GCC_ARM_DIRECTORY {gcc_dir})
 
+set(STM32_FAMILY {family})
 add_definitions(-D{device})
 add_definitions(-DUSE_HAL_DRIVER)
 
