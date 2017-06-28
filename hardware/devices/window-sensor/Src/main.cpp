@@ -1,5 +1,4 @@
 #include <Application.h>
-#include <cstdint>
 #include "main.h"
 
 Application app;
