@@ -1,12 +1,10 @@
 #ifndef __MAIN_H
 #define __MAIN_H
 
+#include <I2CAddresses.h>
+
 #ifdef __cplusplus
 extern "C" {
-#endif
-
-#ifndef I2C_ADDR
-#define I2C_ADDR 42
 #endif
 
 void _Error_Handler(char *, int);

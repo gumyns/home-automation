@@ -17,9 +17,12 @@ include_directories(
 # find sources
 file(GLOB SOURCES Src/*.c)
 file(GLOB SOURCES_CXX Src/*.cpp)
-
+# add I2C address to gcc if specified
+if (I2C_ADDRESS)
+    add_definitions("-DI2C_ADDRESS=${I2C_ADDRESS}")
+endif (I2C_ADDRESS)
 # create elf file
-add_executable(${PROJECT_NAME} ${SOURCES} ${SOURCES_CXX} ${HAL_SOURCES} startup_stm32f030x6.s Src/Application.cpp Inc/Application.h)
+add_executable(${PROJECT_NAME} ${SOURCES} ${SOURCES_CXX} ${HAL_SOURCES} startup_stm32f030x6.s)
 # add linker script
 set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "\"-T${PROJECT_SOURCE_DIR}/STM32F030F4Px_FLASH.ld\"")
 # external commands TODO move it to some global file

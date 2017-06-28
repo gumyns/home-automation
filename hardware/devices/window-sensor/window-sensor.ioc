@@ -1,6 +1,7 @@
 #MicroXplorer Configuration settings - do not modify
 File.Version=6
 I2C1.IPParameters=Timing,Speed,OwnAddress
+I2C1.IPParametersWithoutCheck=OwnAddress
 I2C1.OwnAddress=I2C_ADDR
 I2C1.Speed=100
 I2C1.Timing=0x2000090E
@@ -21,7 +22,7 @@ Mcu.Pin4=PA13
 Mcu.Pin5=PA14
 Mcu.Pin6=VP_SYS_VS_Systick
 Mcu.PinsNb=7
-Mcu.UserConstants=I2C_ADDR,42
+Mcu.UserConstants=I2C_ADDR,I2C_ADDR
 Mcu.UserName=STM32F030F4Px
 MxCube.Version=4.21.0
 MxDb.Version=DB.4.0.210
