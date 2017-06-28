@@ -45,6 +45,7 @@
 /* Exported macro ------------------------------------------------------------*/
 /* Exported functions ------------------------------------------------------- */
 
+void EXTI0_1_IRQHandler(void);
 void EXTI4_15_IRQHandler(void);
 void I2C1_IRQHandler(void);
 
