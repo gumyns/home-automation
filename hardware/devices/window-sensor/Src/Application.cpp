@@ -23,7 +23,7 @@ void SystemClock_Config(void)
     RCC_OscInitStruct.PLL.PREDIV = RCC_PREDIV_DIV1;
     if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
     {
-        _Error_Handler(__FILE__, __LINE__);
+        _Error_Handler();
     }
 
     /**Initializes the CPU, AHB and APB busses clocks
@@ -36,14 +36,14 @@ void SystemClock_Config(void)
 
     if (HAL_RCC_ClockConfig(&RCC_ClkInitStruct, FLASH_LATENCY_1) != HAL_OK)
     {
-        _Error_Handler(__FILE__, __LINE__);
+        _Error_Handler();
     }
 
     PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_I2C1;
     PeriphClkInit.I2c1ClockSelection = RCC_I2C1CLKSOURCE_HSI;
     if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
     {
-        _Error_Handler(__FILE__, __LINE__);
+        _Error_Handler();
     }
 
     /**Configure the Systick interrupt time
@@ -63,6 +63,10 @@ void Application::init() {
     SystemClock_Config();
     MX_GPIO_Init();
     MX_I2C1_Init();
+
+    socket.setListener([](uint8_t data){
+
+    });
 }
 
 void Application::run() {
@@ -71,17 +75,21 @@ void Application::run() {
     }
 }
 
-void Application::onError(char *file, int line) {
+/** Turn on diode on error */
+void Application::onError() {
+    HAL_GPIO_WritePin(STATUS_DIODE_GPIO_Port, STATUS_DIODE_Pin, GPIO_PIN_SET);
     while (1) {
     }
 }
 
 void Application::onExternalInterrupt(uint16_t pin) {
     switch (pin) {
-        case GPIO_PIN_13: {
-
+        case INT_Pin: {
+            HAL_GPIO_WritePin(STATUS_DIODE_GPIO_Port, STATUS_DIODE_Pin, GPIO_PIN_SET);
             break;
         }
+        default: // do nothing
+            break;
     }
 }
 

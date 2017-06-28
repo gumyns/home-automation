@@ -8,8 +8,8 @@ int main(void) {
     app.run();
 }
 
-void _Error_Handler(char *file, int line) {
-    app.onError(file, line);
+void _Error_Handler() {
+    app.onError();
 }
 
 void HAL_GPIO_EXTI_Callback(uint16_t pin) {

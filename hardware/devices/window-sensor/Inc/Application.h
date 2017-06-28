@@ -2,13 +2,14 @@
 #define ARM_DEVICE_WINDOW_SENSOR_APPLICATION_H
 
 #include <cstdint>
+#include <device/I2CSocket.h>
 
 class Application {
-
+    ha::I2CSocket socket;
 public:
     void init();
     void run();
-    void onError(char *file, int line);
+    void onError();
     void onExternalInterrupt(uint16_t pin);
 };
 

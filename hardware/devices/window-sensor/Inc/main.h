@@ -1,7 +1,7 @@
 #ifndef __MAIN_H
 #define __MAIN_H
 
-#include "../lib/common/I2CAddresses.h"
+#include <common/I2CAddresses.h>
 
 #define INT_Pin GPIO_PIN_13
 #define INT_GPIO_Port GPIOA
@@ -13,7 +13,7 @@
 extern "C" {
 #endif
 
-void _Error_Handler(char *, int);
+void _Error_Handler();
 
 #define Error_Handler() _Error_Handler(__FILE__, __LINE__)
 
