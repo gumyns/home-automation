@@ -1,3 +1,4 @@
+#!/usr/bin/python
 import os
 import sys
 
@@ -9,7 +10,7 @@ if len(sys.argv) == 3:
     targetDir = os.path.join(os.path.abspath(sys.argv[1]), "cmake")
     list = sys.argv[2]
 else:
-    sys.exit("ERROR parameter missing -> python generateDirectories.py <directory> <coma separated families list>")
+    sys.exit("ERROR parameter missing -> python generateDirectories.py <directory> <comma separated families list>")
 
 with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), "templates", "directory.template"), 'r') as f:
     template = f.read()

@@ -1,0 +1,21 @@
+# Once done this will define
+#
+#  STM32_STARTUP_FOUND - system has HAL
+#  STM32_STARTUP_FILE - the HAL include directory
+
+if (STM32_STARTUP_FILE)
+    set(STM32Startup_FOUND TRUE) # in cache already
+else (STM32_STARTUP_FILE)
+    set(STM32Startup_DEFINITIONS "")
+
+{placeholder}
+    if (STM32_STARTUP_FILE)
+        set(STM32Startup_FOUND TRUE)
+    endif (STM32_STARTUP_FILE)
+
+    if (NOT STM32_STARTUP_FOUND)
+        message(FATAL_ERROR "Could not find HAL")
+    endif (NOT STM32_STARTUP_FOUND)
+
+    mark_as_advanced(STM32_STARTUP_FILE)
+endif (STM32_STARTUP_FILE)
