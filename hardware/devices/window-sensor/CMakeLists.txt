@@ -17,18 +17,26 @@ include_directories(
     Inc
 )
 # find sources
-file(GLOB SOURCES Src/*.c)
+file(GLOB SOURCES_C Src/*.c)
 file(GLOB SOURCES_CXX Src/*.cpp)
-
-set(DEVICE_SORUCES
+# device lib sources TODO move to another FindXXX later
+set(DEVICE_LIBRARY_SOURCES
     lib/src/device/I2CSocket.cpp
 )
-# add I2C address to gcc if specified
+# add I2C address to gcc if specified TODO move to another FindXXX later
 if (I2C_ADDRESS)
     add_definitions("-DI2C_ADDRESS=${I2C_ADDRESS}")
 endif (I2C_ADDRESS)
+# set sources
+set(SOURCES
+        ${STM32_STARTUP_FILE}
+        ${HAL_SOURCES}
+        ${DEVICE_LIBRARY_SOURCES}
+        ${SOURCES_C}
+        ${SOURCES_CXX}
+)
 # create elf file
-add_executable(${PROJECT_NAME} ${SOURCES} ${SOURCES_CXX} ${HAL_SOURCES} ${DEVICE_SORUCES} ${STM32_STARTUP_FILE})
+add_executable(${PROJECT_NAME} ${SOURCES})
 # add linker script
 set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "\"-T${PROJECT_SOURCE_DIR}/STM32F030F4Px_FLASH.ld\"")
 # external commands TODO move it to some global file
