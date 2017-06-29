@@ -8,6 +8,7 @@ set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} ${PROJECT_SOURCE_DIR}/../../cmake/Mod
 # find required packages
 find_package(CMSIS REQUIRED)
 find_package(HAL REQUIRED)
+find_package(STM32Startup REQUIRED)
 # includes
 include_directories(
     ${CMSIS_INCLUDE_DIRS}
@@ -27,7 +28,7 @@ if (I2C_ADDRESS)
     add_definitions("-DI2C_ADDRESS=${I2C_ADDRESS}")
 endif (I2C_ADDRESS)
 # create elf file
-add_executable(${PROJECT_NAME} ${SOURCES} ${SOURCES_CXX} ${HAL_SOURCES} ${DEVICE_SORUCES} startup_stm32f030x6.s)
+add_executable(${PROJECT_NAME} ${SOURCES} ${SOURCES_CXX} ${HAL_SOURCES} ${DEVICE_SORUCES} ${STM32_STARTUP_FILE})
 # add linker script
 set_target_properties(${PROJECT_NAME} PROPERTIES LINK_FLAGS "\"-T${PROJECT_SOURCE_DIR}/STM32F030F4Px_FLASH.ld\"")
 # external commands TODO move it to some global file

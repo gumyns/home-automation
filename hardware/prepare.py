@@ -51,3 +51,8 @@ with open(os.path.join(os.path.dirname(os.path.realpath(__file__)), "scripts", "
     with open(os.path.join(currentDir, "cmake", "Modules", "FindHAL.cmake"), 'w') as f:
         f.write(template)
         f.close()
+# find startup files
+deviceList = ""
+for device in devices:
+    deviceList = deviceList + "," + device
+os.system("python " + os.path.join(scriptsDir, "generateStartup.py") + " " + currentDir + " " + deviceList[1:])
