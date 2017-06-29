@@ -71,12 +71,13 @@ void Application::init() {
 
 void Application::run() {
     while(1) {
-
+        HAL_Delay(500);
     }
 }
 
 /** Turn on diode on error */
 void Application::onError() {
+    HAL_GPIO_WritePin(STATUS_DIODE_GPIO_Port, STATUS_DIODE_Pin, GPIO_PIN_RESET);
     while (1) {
     }
 }
@@ -84,7 +85,10 @@ void Application::onError() {
 void Application::onExternalInterrupt(uint16_t pin) {
     switch (pin) {
         case INT_Pin: {
-            HAL_GPIO_WritePin(STATUS_DIODE_GPIO_Port, STATUS_DIODE_Pin, GPIO_PIN_RESET);
+            if (HAL_GPIO_ReadPin(STATUS_DIODE_GPIO_Port, STATUS_DIODE_Pin) == GPIO_PIN_RESET)
+                HAL_GPIO_WritePin(STATUS_DIODE_GPIO_Port, STATUS_DIODE_Pin, GPIO_PIN_SET);
+            else
+                HAL_GPIO_WritePin(STATUS_DIODE_GPIO_Port, STATUS_DIODE_Pin, GPIO_PIN_RESET);
             break;
         }
         case GPIO_PIN_0: {
