@@ -4,6 +4,8 @@
 
 Application app;
 
+uint8_t buffer;
+
 int main(void) {
     app.init();
     app.run();

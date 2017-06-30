@@ -1,6 +1,6 @@
 #include "Application.h"
 #include "stm32f0xx_hal.h"
-#include "i2c.h"
+#include "usart.h"
 #include "gpio.h"
 
 /**
@@ -62,50 +62,28 @@ void Application::init() {
     HAL_Init();
     SystemClock_Config();
     MX_GPIO_Init();
-    MX_I2C1_Init();
-
-    socket.setListener([](uint8_t data){
-
-    });
+    MX_USART1_UART_Init();
 }
-
-uint8_t x = 42;
 
 void Application::run() {
     while(1) {
         HAL_Delay(500);
-        if(HAL_I2C_Master_Transmit_DMA(&hi2c1, I2C_ADDR_MASTER , &x, 1) == HAL_OK) {
-            if (HAL_GPIO_ReadPin(STATUS_DIODE_GPIO_Port, STATUS_DIODE_Pin) == GPIO_PIN_RESET)
-                HAL_GPIO_WritePin(STATUS_DIODE_GPIO_Port, STATUS_DIODE_Pin, GPIO_PIN_SET);
-            else
-                HAL_GPIO_WritePin(STATUS_DIODE_GPIO_Port, STATUS_DIODE_Pin, GPIO_PIN_RESET);
-        }
     }
 }
 
 /** Turn on diode on error */
 void Application::onError() {
-    HAL_GPIO_WritePin(STATUS_DIODE_GPIO_Port, STATUS_DIODE_Pin, GPIO_PIN_RESET);
     while (1) {
     }
 }
 
 void Application::onExternalInterrupt(uint16_t pin) {
     switch (pin) {
-        case INT_Pin: {
-            if (HAL_GPIO_ReadPin(STATUS_DIODE_GPIO_Port, STATUS_DIODE_Pin) == GPIO_PIN_RESET)
-                HAL_GPIO_WritePin(STATUS_DIODE_GPIO_Port, STATUS_DIODE_Pin, GPIO_PIN_SET);
+        case INT_IN_Pin: {
+            if (HAL_GPIO_ReadPin(INT_IN_GPIO_Port, INT_IN_Pin) == GPIO_PIN_RESET)
+                HAL_UART_DeInit(&huart1);
             else
-                HAL_GPIO_WritePin(STATUS_DIODE_GPIO_Port, STATUS_DIODE_Pin, GPIO_PIN_RESET);
-            break;
-        }
-        case GPIO_PIN_0: {
-            HAL_GPIO_WritePin(STATUS_DIODE_GPIO_Port, STATUS_DIODE_Pin, GPIO_PIN_RESET);
-            break;
-        }
-        case GPIO_PIN_1: {
-            HAL_GPIO_WritePin(STATUS_DIODE_GPIO_Port, STATUS_DIODE_Pin, GPIO_PIN_RESET);
-            break;
+                HAL_UART_Init(&huart1);
         }
         default: // do nothing
             break;
