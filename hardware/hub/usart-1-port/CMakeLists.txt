@@ -21,12 +21,8 @@ file(GLOB SOURCES_C Src/*.c)
 file(GLOB SOURCES_CXX Src/*.cpp)
 # device lib sources TODO move to another FindXXX later
 set(DEVICE_LIBRARY_SOURCES
-    lib/src/device/I2CSocket.cpp
+        lib/src/hub/Socket.cpp
 )
-# add I2C address to gcc if specified TODO move to another FindXXX later
-if (I2C_ADDRESS)
-    add_definitions("-DI2C_ADDRESS=${I2C_ADDRESS}")
-endif (I2C_ADDRESS)
 # set sources
 set(SOURCES
         ${STM32_STARTUP_FILE}

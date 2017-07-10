@@ -41,7 +41,7 @@
   /* Includes ------------------------------------------------------------------*/
 
 /* USER CODE BEGIN Includes */
-
+#include "stm32f0xx_hal.h"
 /* USER CODE END Includes */
 
 /* Private define ------------------------------------------------------------*/
@@ -49,10 +49,11 @@
 
 #define STATUS_DIODE_Pin GPIO_PIN_0
 #define STATUS_DIODE_GPIO_Port GPIOA
-#define INT_IN_Pin GPIO_PIN_1
-#define INT_IN_GPIO_Port GPIOA
-#define INT_OUT_Pin GPIO_PIN_4
-#define INT_OUT_GPIO_Port GPIOA
+#define COMM_ACK_Pin GPIO_PIN_1
+#define COMM_ACK_GPIO_Port GPIOA
+#define COMM_ACK_EXTI_IRQn EXTI0_1_IRQn
+#define COMM_INT_Pin GPIO_PIN_4
+#define COMM_INT_GPIO_Port GPIOA
 
 /* USER CODE BEGIN Private defines */
 

@@ -64,7 +64,7 @@ void MX_USART1_UART_Init(void)
   huart1.Init.OneBitSampling = UART_ONE_BIT_SAMPLE_DISABLE;
   huart1.AdvancedInit.AdvFeatureInit = UART_ADVFEATURE_NO_INIT;
 
- }
+}
 
 void HAL_UART_MspInit(UART_HandleTypeDef* uartHandle)
 {

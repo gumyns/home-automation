@@ -19,3 +19,11 @@ void _Error_Handler() {
 void HAL_GPIO_EXTI_Callback(uint16_t pin) {
     app.onExternalInterrupt(pin);
 }
+
+void HAL_UART_TxCpltCallback(UART_HandleTypeDef *huart) {
+    app.onTx();
+};
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart) {
+    app.onRx();
+};
