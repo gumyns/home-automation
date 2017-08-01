@@ -11,8 +11,10 @@ void ha::Socket::onACK(uint8_t value) {
         } else {
             rxSize = 0;
             txSize = 0;
-            if (rxBuffer != nullptr) delete rxBuffer;
-            if (txBuffer != nullptr) delete txBuffer;
+            if (rxBuffer != nullptr)
+                delete rxBuffer;
+            if (txBuffer != nullptr)
+                delete txBuffer;
             HAL_UART_Init((UART_HandleTypeDef *) uart);
             HAL_UART_Receive_IT((UART_HandleTypeDef *) uart, &rxSize, 1);
         }
