@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name conn-rj11)(type KiCad)(uri F:/projects/contrib-kicad_parts-master/conn-rj11)(options "")(descr ""))
+)
