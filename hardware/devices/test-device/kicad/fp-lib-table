@@ -1,0 +1,3 @@
+(fp_lib_table
+  (lib (name rj12)(type KiCad)(uri F:/Android/Projekty/home-automation/hardware/templates/kicad/footprints/rj12.pretty)(options "")(descr ""))
+)
